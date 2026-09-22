@@ -154,7 +154,7 @@ public class RobotTeleopMecanumFieldRelativeDrive extends OpMode {
 
         // We multiply by maxSpeed so that it can be set lower for outreaches
         // When a young child is driving the robot, we may not want to allow full
-        // speed.
+        // speed./
         frontLeftDrive.setPower(maxSpeed * (frontLeftPower / maxPower));
         frontRightDrive.setPower(maxSpeed * (frontRightPower / maxPower));
         backLeftDrive.setPower(maxSpeed * (backLeftPower / maxPower));
