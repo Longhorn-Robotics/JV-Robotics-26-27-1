@@ -32,6 +32,26 @@ public class Mecanum extends OpMode {
     }
 
     public void loop() {
-        
+        double x = gamepad1.left_stick_x;
+        double y = gamepad1.left_stick_y;
+        double rotation = gamepad1.right_stick_x;
+
+        double frontLeftPwr = y + x + rotation;
+        double frontRightPwr = y - x - rotation;
+        double backLeftPwr = y - x + rotation;
+        double backRightPwr = y + x - rotation;
+
+        double maxPower = 1.0;
+        double maxSpeed = 1.0;
+
+        maxPower = Math.max(maxPower, Math.abs(frontLeftPwr));
+        maxPower = Math.max(maxPower, Math.abs(frontRightPwr));
+        maxPower = Math.max(maxPower, Math.abs(backRightPwr));
+        maxPower = Math.max(maxPower, Math.abs(backLeftPwr));
+
+        rightForward.setPower(maxSpeed * frontRightPwr/maxPower);
+        rightBack.setPower(maxSpeed * backRightPwr/maxPower);
+        leftForward.setPower(maxSpeed * frontLeftPwr/maxPower);
+        leftBack.setPower(maxSpeed * backLeftPwr/maxPower);
     }
 }
