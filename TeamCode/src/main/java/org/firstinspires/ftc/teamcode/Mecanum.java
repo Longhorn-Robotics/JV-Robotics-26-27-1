@@ -1,19 +1,17 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@TeleOp(name="WheelDriveTest", group="LinearOpMode")
 @SuppressWarnings("unused")
-public class Mecanum extends OpMode {
+public class Mecanum {
     DcMotor rightForward;
     DcMotor leftForward;
     DcMotor rightBack;
     DcMotor leftBack;
 
-    public void init() {
+    public void setup(HardwareMap hardwareMap) {
         rightForward = hardwareMap.get(DcMotor.class, "rightForward");
         rightBack = hardwareMap.get(DcMotor.class, "rightBack");
         leftForward = hardwareMap.get(DcMotor.class, "leftForward");
@@ -22,16 +20,9 @@ public class Mecanum extends OpMode {
         leftForward.setDirection(DcMotorSimple.Direction.REVERSE);
         leftBack.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        rightForward.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        leftForward.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
-    public void loop() {
-        double x = gamepad1.left_stick_x;
-        double y = gamepad1.left_stick_y;
-        double rotation = gamepad1.right_stick_x;
+    public void drive(double x, double y, double rotation) {
 
         double frontLeftPwr = y + x + rotation;
         double frontRightPwr = y - x - rotation;
