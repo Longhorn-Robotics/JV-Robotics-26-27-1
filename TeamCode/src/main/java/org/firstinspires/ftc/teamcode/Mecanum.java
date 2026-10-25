@@ -24,10 +24,10 @@ public class Mecanum {
 
     public void drive(double x, double y, double rotation) {
 
-        double frontLeftPwr = y + x + rotation;
-        double frontRightPwr = y - x - rotation;
-        double backLeftPwr = y - x + rotation;
-        double backRightPwr = y + x - rotation;
+        double frontLeftPwr = y + x + rotation/2;
+        double frontRightPwr = y - x - rotation/2;
+        double backLeftPwr = y - x + rotation/2;
+        double backRightPwr = y + x - rotation/2;
 
         double maxPower = 1.0;
         double maxSpeed = 1.0;
