@@ -9,17 +9,20 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 public class Main extends LinearOpMode {
     Mecanum mecanum = new Mecanum();
     Intake intake = new Intake();
+    Gun gun = new Gun();
 
     @Override
     public void runOpMode() {
         mecanum.setup(hardwareMap);
         intake.setup(hardwareMap);
+        gun.setup(hardwareMap, telemetry);
 
         waitForStart();
 
         while(opModeIsActive()) {
             mecanum.drive(gamepad1.left_stick_x, -gamepad1.left_stick_y, gamepad1.right_stick_x);
             intake.run(gamepad1);
+            gun.run(gamepad1, telemetry);
         }
     }
 }
