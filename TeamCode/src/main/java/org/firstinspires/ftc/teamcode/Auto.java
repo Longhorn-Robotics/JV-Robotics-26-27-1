@@ -20,6 +20,8 @@ public class Auto extends LinearOpMode {
 
         waitForStart();
 
+        List<AprilTagDetection> tags = vision.getDetection();
+        telemetry.addData("tags", tags);
         // TO-DO:
         // finish shooting and how much power to use based on distance
         // Add that to the auto after it lines up with the April tag
